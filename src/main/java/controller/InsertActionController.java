@@ -10,10 +10,8 @@ import javax.servlet.http.HttpSession;
 
 import service.MemberService;
 import vo.Member;
+import java.net.*;
 
-/**
- * Servlet implementation class InsertActionController
- */
 @WebServlet("/InsertActionController")
 public class InsertActionController extends HttpServlet {
 	
@@ -44,7 +42,8 @@ public class InsertActionController extends HttpServlet {
 		MemberService memberService = new MemberService();
 		int row = memberService.insertMember(member);
 		
-		response.sendRedirect(request.getContextPath()+"/LoginFormController");
+		String msg = URLEncoder.encode("회원가입 완료", "utf-8");
+		response.sendRedirect(request.getContextPath()+"/LoginFormController?msg="+msg);
 	}
 
 }

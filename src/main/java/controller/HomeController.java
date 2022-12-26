@@ -15,6 +15,8 @@ import vo.Member;
 public class HomeController extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String msg = request.getParameter("msg");
+		request.setAttribute("msg", msg);
 		// 로그인 전에만
 		HttpSession session  = request.getSession();
 		// 로그인 전 : loginMember -> null
@@ -27,5 +29,8 @@ public class HomeController extends HttpServlet {
 			request.getRequestDispatcher("WEB-INF/view/home.jsp").forward(request, response);
 			loginMember = (Member)session.getAttribute("loginMember");
 		}
+		
+		
+		request.getRequestDispatcher("/WEB-INF/view/home.jsp").forward(request, response);
 	}
 }

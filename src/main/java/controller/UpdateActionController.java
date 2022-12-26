@@ -10,10 +10,8 @@ import javax.servlet.http.HttpSession;
 
 import service.MemberService;
 import vo.Member;
+import java.net.*;
 
-/**
- * Servlet implementation class UpdateActionController
- */
 @WebServlet("/UpdateActionController")
 public class UpdateActionController extends HttpServlet {
 	
@@ -45,10 +43,7 @@ public class UpdateActionController extends HttpServlet {
 		MemberService memberService = new MemberService();
 		int row = memberService.updateMember(member);
 		
-		if(row == 1) {
-			System.out.println("정보수정성공");
-			response.sendRedirect(request.getContextPath()+"/HomeController");
-		}
+		String msg = URLEncoder.encode("닉네임변경완료", "utf-8");
+		response.sendRedirect(request.getContextPath()+"/HomeController?msg="+msg);
 	}
-
 }

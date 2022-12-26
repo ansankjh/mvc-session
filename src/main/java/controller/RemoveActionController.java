@@ -43,11 +43,7 @@ public class RemoveActionController extends HttpServlet {
 		MemberService memberService = new MemberService();
 		int row = memberService.deleteMember(member);
 		
-		if(row == 1) {
-			System.out.println("회원탈퇴완료");
-			response.sendRedirect(request.getContextPath()+"/LoginFormController");
-			session.invalidate();
-		}
+		session.invalidate();
+		response.sendRedirect(request.getContextPath()+"/LoginFormController");
 	}
-
 }
